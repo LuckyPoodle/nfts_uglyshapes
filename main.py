@@ -1,16 +1,40 @@
-# This is a sample Python script.
+from PIL import Image
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+counter =0
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+group1 = [
+    r'C:\Users\nfts\square\blue.png',
+    r'C:\Users\nfts\square\green.png',
+    r'C:\Users\nfts\square\red.png',
+]
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+group2 = [
+    r'C:\Users\nfts\circle\gold.png',
+    r'C:\Users\nfts\circle\orange.png',
+    r'C:\Users\nfts\circle\pink.png',
+]
+
+group3 = [
+    r'C:\Users\nfts\triangle\black.png',
+    r'C:\Users\nfts\triangle\grey.png',
+    r'C:\Users\nfts\triangle\white.png',
+]
+
+
+def createImage(a, b, c, counter):
+    image01 = Image.open(group1[a]).convert("RGBA")
+    image02 = Image.open(group2[b]).convert("RGBA")
+    image03 = Image.open(group3[c]).convert("RGBA")
+
+    intermediate = Image.alpha_composite(image01, image02)
+    intermediate2 = Image.alpha_composite(intermediate, image03)
+    name = "C:/Users/nfts/Done/" + str(counter) + ".png"
+    intermediate2.save(name)
+
+
+for x in range(3):
+    for y in range(3):
+        for z in range(3):
+            createImage(x, y, z, counter)
+            counter += 1
